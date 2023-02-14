@@ -1,78 +1,120 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native'
-import React from 'react'
-import { FontAwesome } from '@expo/vector-icons';
-
-const Notes =[
-  {
-  id: 1,
-  title: 'Note 1',
-  description: 'This is note 1',
-  note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum nec velit in vulputate. Cras quis eros nec mi convallis imperdiet. Sed vel tempus massa. Donec id nibh lorem. Praesent sit amet aliquam est. Maecenas varius lacus lorem, vulputate gravida risus rhoncus eget. Nunc congue sem non aliquam iaculis. Donec consequat arcu sapien, at dictum leo suscipit et. Nullam lacinia felis ac rhoncus ultrices ',
-  date: '2021-01-01'
-},
-  {
-  id: 2,
-  title: 'Note 2',
-  description: 'This is note 1', 
-  note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum nec velit in vulputate. Cras quis eros nec mi convallis imperdiet. Sed vel tempus massa. Donec id nibh lorem. Praesent sit amet aliquam est. Maecenas varius lacus lorem, vulputate gravida risus rhoncus eget. Nunc congue sem non aliquam iaculis. Donec consequat arcu sapien, at dictum leo suscipit et. Nullam lacinia felis ac rhoncus ultrices ',
-  date: '1914-05-11'
-},
-  {
-  id: 3,
-  title: 'Note 3',
-  description: 'This is note 1',
-  note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum nec velit in vulputate. Cras quis eros nec mi convallis imperdiet. Sed vel tempus massa. Donec id nibh lorem. Praesent sit amet aliquam est. Maecenas varius lacus lorem, vulputate gravida risus rhoncus eget. Nunc congue sem non aliquam iaculis. Donec consequat arcu sapien, at dictum leo suscipit et. Nullam lacinia felis ac rhoncus ultrices ',
-  date: '2000-07-05'
-},
-  {
-  id: 4,
-  title: 'Note 4',
-  description: 'This is note 1',
-  note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin condimentum nec velit in vulputate. Cras quis eros nec mi convallis imperdiet. Sed vel tempus massa. Donec id nibh lorem. Praesent sit amet aliquam est. Maecenas varius lacus lorem, vulputate gravida risus rhoncus eget. Nunc congue sem non aliquam iaculis. Donec consequat arcu sapien, at dictum leo suscipit et. Nullam lacinia felis ac rhoncus ultrices ',
-  date: '1894-11-25'
-},
-]
+import { useState } from "react";
+import { View, StyleSheet, FlatList } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import { Button } from "../components/Button/Button";
+import notesService from "../services/notes.service";
+import useFetch from "../hooks/useFetch";
+import { FullScreenLoader } from "../components/Loader/FullScreenLoader";
+import { BottomAction } from "../components/Notes/NoteList/BottomAction";
+import { NoteFormModal } from "../components/Notes/NoteFormModal";
+import { EmptyState } from "../components/EmptyState/EmptyState";
+import { NoteItem } from "../components/Notes/NoteList/NoteItem";
+import { Note } from "../models/note.model";
+import { useCreateOrUpdate } from "../hooks/useCreateOrUpdate";
+import useConfirmDelete from "../hooks/useConfirmDelete";
 
 const HomeScreen = () => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+
+  const {
+    data: notes,
+    error,
+    isLoading,
+    setData: setNotes,
+  } = useFetch(notesService.fetchNotes, []);
+  const confirmDelete = useConfirmDelete();
+  const createOrUpdate = useCreateOrUpdate();
+
+  const deleteNote = async () => {
+    if (!selectedNote?.id) return;
+    createOrUpdate({
+      fn: notesService.deleteNoteById,
+      args: [selectedNote.id],
+      successCb: () => {
+        setNotes((notes ?? []).filter((note) => note.id !== selectedNote.id));
+      },
+      successMessage: "Note deleted successfully",
+      errorMessage: "Something went wrong",
+    });
+  };
+
+  if (isLoading) return <FullScreenLoader />;
+
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>
-        {
-          Notes.map((note) => (
-            <View key={note.id} style={styles.noteContainer}>
-              <View style={styles.noteHeader}>
-                <Text style={styles.noteTitle}>{note.title}</Text> 
-                <Text>{note.date}</Text>   
-              </View>
-                <Text>{note.description}</Text>
-            </View>
-          ))
-        }
-      </View>
-      <View style={styles.footer}>
+    <>
+      <View style={styles.container}>
+        {(notes?.length ?? 0) === 0 ? (
+          <EmptyState text="No notes found!" />
+        ) : (
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={notes ?? []}
+            renderItem={({ item }) => (
+              <NoteItem
+                note={item}
+                showActions={(note) => {
+                  setIsBottomSheetOpen(true);
+                  setSelectedNote(note);
+                }}
+              />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        )}
 
-      <Pressable style={styles.button} onPress={()=>{}}>
-        <FontAwesome name='plus' size={30} color='white'/>
-      </Pressable>
+        <View style={styles.footer}>
+          <Button
+            onPress={() => setIsAddModalOpen(true)}
+            customStyles={styles.addButton}
+            circle
+          >
+            <FontAwesome name="plus" size={30} color="white" />
+          </Button>
+        </View>
       </View>
-    </View>
-  )
-}
 
-export default HomeScreen
+      <NoteFormModal
+        visible={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        title="Add a new note"
+        callback={(note) => {
+          setNotes([note, ...(notes ?? [])]);
+        }}
+      />
+
+      <BottomAction
+        isOpen={isBottomSheetOpen}
+        setIsOpen={setIsBottomSheetOpen}
+        onDelete={() => {
+          setIsBottomSheetOpen(false);
+          confirmDelete(deleteNote);
+        }}
+      />
+    </>
+  );
+};
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor: 'white', 
-    justifyContent: 'space-between',
-    padding: 10
+    flex: 1,
+    backgroundColor: "white",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    paddingTop: 20,
+    paddingBottom: 0,
   },
-  content:{},
-  footer:{width: '100%', alignItems: 'center', marginBottom: 10},
-  button:{backgroundColor: '#F8696A', width: 60,height: 60, padding: 10, borderRadius: 30, position: 'absolute', right: 10, bottom: 0, justifyContent: 'center', alignItems: 'center'},
-  buttonText:{textAlign: 'center', color: 'white', fontSize: 16},
-  noteContainer: {backgroundColor: '#FDE69A', height: 60, width: '100%', marginBottom: 20, paddingVertical: 5, paddingHorizontal: 10,justifyContent: 'space-between'},
-  noteHeader: {width: '100%', justifyContent: 'space-between', flexDirection: 'row'},
-  noteTitle: {fontSize:18, fontWeight: '700'}
-})
+  addButton: {
+    position: "absolute",
+    right: 10,
+    bottom: 0,
+  },
+  footer: {
+    width: "100%",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+});
