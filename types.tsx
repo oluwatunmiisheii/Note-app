@@ -15,6 +15,7 @@ declare global {
 
 export type RootStackParamList = {
   HomeScreen: undefined;
+  NoteDetailsScreen: { noteId: string };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
