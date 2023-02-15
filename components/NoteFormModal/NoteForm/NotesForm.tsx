@@ -138,7 +138,7 @@ export const NotesForm = (props: NotesFormProps) => {
 
       <Button
         onPress={handleSubmit}
-        customStyles={{ marginTop: 30 }}
+        customStyles={styles.submitButton}
         testID="submit-button"
       >
         <Text style={styles.submitButton}>{isEditing ? "Update" : "Save"}</Text>
@@ -149,6 +149,9 @@ export const NotesForm = (props: NotesFormProps) => {
 
 const styles = StyleSheet.create({
   submitButton: {
+    marginTop: 30,
+  },
+  submitButtonText: {
     color: "white",
     fontWeight: "700",
     fontSize: 18,
