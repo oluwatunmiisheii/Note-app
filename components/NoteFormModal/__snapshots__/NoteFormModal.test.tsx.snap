@@ -170,7 +170,7 @@ exports[`<NoteFormModal> renders correctly 1`] = `
                       Array [
                         Object {
                           "fontSize": 18,
-                          "fontWeight": "700",
+                          "fontWeight": "500",
                           "height": 50,
                           "paddingHorizontal": 2,
                           "textAlignVertical": "top",
@@ -233,7 +233,7 @@ exports[`<NoteFormModal> renders correctly 1`] = `
                       Array [
                         Object {
                           "fontSize": 18,
-                          "fontWeight": "700",
+                          "fontWeight": "500",
                           "height": 50,
                           "paddingHorizontal": 2,
                           "textAlignVertical": "top",
@@ -300,7 +300,7 @@ exports[`<NoteFormModal> renders correctly 1`] = `
                       Array [
                         Object {
                           "fontSize": 18,
-                          "fontWeight": "700",
+                          "fontWeight": "500",
                           "height": 50,
                           "paddingHorizontal": 2,
                           "textAlignVertical": "top",
@@ -361,6 +361,8 @@ exports[`<NoteFormModal> renders correctly 1`] = `
                 style={
                   Object {
                     "color": "white",
+                    "fontSize": 18,
+                    "fontWeight": "700",
                   }
                 }
               >
