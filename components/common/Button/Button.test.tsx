@@ -1,5 +1,5 @@
 import renderer from "react-test-renderer";
-import colors from "../../utils/constants/colors";
+import colors from "../../../utils/constants/colors";
 import { Button, Variant } from "./Button";
 
 describe(`<${Button.name}>`, () => {

@@ -1,5 +1,5 @@
 import renderer from "react-test-renderer";
-import { render, screen, fireEvent } from "@testing-library/react-native";
+import { render, screen } from "@testing-library/react-native";
 import { BottomSheet } from "./BottomSheet";
 import { Text } from "react-native";
 

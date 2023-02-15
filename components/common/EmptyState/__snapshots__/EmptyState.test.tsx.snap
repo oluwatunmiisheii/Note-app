@@ -5,6 +5,7 @@ exports[`<EmptyState> renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
+      "backgroundColor": "white",
       "flex": 1,
       "justifyContent": "center",
     }

@@ -87,6 +87,7 @@ exports[`<NoteFormModal> renders correctly 1`] = `
                 title
               </Text>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 collapsable={false}
                 focusable={true}
@@ -320,6 +321,7 @@ exports[`<NoteFormModal> renders correctly 1`] = `
               </View>
             </View>
             <View
+              accessibilityRole="button"
               accessible={true}
               collapsable={false}
               focusable={true}

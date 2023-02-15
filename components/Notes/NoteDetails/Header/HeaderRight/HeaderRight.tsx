@@ -1,4 +1,4 @@
-import { AntDesign, Feather } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { Pressable, View } from "react-native";
 import useConfirmDelete from "../../../../../hooks/useConfirmDelete";
 
@@ -17,7 +17,7 @@ export const HeaderRight = ({ onDelete, onEdit }: HeaderRightProps) => {
         onPress={onEdit}
         accessibilityLabel="edit note"
       >
-        <AntDesign name="edit" color="white" size={18} />
+        <Feather name="edit" color="white" size={20} />
       </Pressable>
       <Pressable
         onPress={() => {
@@ -25,7 +25,7 @@ export const HeaderRight = ({ onDelete, onEdit }: HeaderRightProps) => {
         }}
         accessibilityLabel="delete note"
       >
-        <Feather name="trash-2" color="white" size={18} />
+        <Feather name="trash-2" color="white" size={20} />
       </Pressable>
     </View>
   );

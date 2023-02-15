@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { Button } from "../components/Button/Button";
+import { Button } from "../components/common/Button/Button";
 import notesService from "../services/note/notes.service";
 import useFetch from "../hooks/useFetch";
-import { FullScreenLoader } from "../components/Loader/FullScreenLoader/FullScreenLoader";
-import { BottomAction } from "../components/Notes/NoteList/BottomAction/BottomAction";
+import { FullScreenLoader } from "../components/common/Loader/FullScreenLoader/FullScreenLoader";
+import { BottomAction } from "../components/Notes/NoteList/ActionSheet/ActionSheet";
 import { NoteFormModal } from "../components/Notes/NoteFormModal";
-import { EmptyState } from "../components/EmptyState/EmptyState";
+import { EmptyState } from "../components/common/EmptyState/EmptyState";
 import { NoteItem } from "../components/Notes/NoteList/NoteItem/NoteItem";
 import { Note } from "../models/note.model";
 import { useCreateOrUpdate } from "../hooks/useCreateOrUpdate";
@@ -41,6 +41,8 @@ const HomeScreen = () => {
   };
 
   if (isLoading) return <FullScreenLoader />;
+
+  if (error) return <EmptyState text="Something went wrong 😢" />;
 
   return (
     <>

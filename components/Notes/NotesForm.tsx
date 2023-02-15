@@ -3,8 +3,8 @@ import { Text } from "react-native";
 import { useCreateOrUpdate } from "../../hooks/useCreateOrUpdate";
 import { CreateNoteDto, Note } from "../../models/note.model";
 import notesService from "../../services/note/notes.service";
-import { Button } from "../Button/Button";
-import { Input } from "../Form/Input/Input";
+import { Button } from "../common/Button/Button";
+import { Input } from "../common/Form/Input/Input";
 
 interface NotesFormProps {
   onSubmit?: (payload: Note) => void;

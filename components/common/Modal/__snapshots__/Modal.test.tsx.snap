@@ -87,6 +87,7 @@ exports[`<Modal> renders correctly 1`] = `
                 Modal Title
               </Text>
               <View
+                accessibilityRole="button"
                 accessible={true}
                 collapsable={false}
                 focusable={true}

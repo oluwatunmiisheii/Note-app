@@ -195,6 +195,7 @@ Array [
     </View>
   </View>,
   <View
+    accessibilityRole="button"
     accessible={true}
     collapsable={false}
     focusable={true}

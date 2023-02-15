@@ -7,7 +7,7 @@ import {
   StyleProp,
   Text,
 } from "react-native";
-import colors from "../../../utils/constants/colors";
+import colors from "../../../../utils/constants/colors";
 import { InputError } from "../InputError/InputError";
 
 interface InputProps extends TextInputProps {

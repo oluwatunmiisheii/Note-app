@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import colors from "../../../../utils/constants/colors";
-import { BottomSheet } from "../../../BottomSheet/BottomSheet";
-import { Button } from "../../../Button/Button";
+import { BottomSheet } from "../../../common/BottomSheet/BottomSheet";
+import { Button } from "../../../common/Button/Button";
 
 interface BottomActionProps {
-  onDelete?: () => void;
+  onDelete: () => void;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }

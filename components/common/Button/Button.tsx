@@ -1,5 +1,5 @@
 import { StyleSheet, Pressable, StyleProp, ViewStyle } from "react-native";
-import colors from "../../utils/constants/colors";
+import colors from "../../../utils/constants/colors";
 
 export enum Variant {
   primary = "primary",
@@ -29,6 +29,7 @@ export const Button = (props: ButtonProps) => {
   return (
     // add style when disabled
     <Pressable
+      accessibilityRole="button"
       style={[buttonStyles, circle && buttonCircle, customStyles]}
       {...rest}
     >
