@@ -9,6 +9,7 @@ import notesService from "../../services/note/notes.service";
 
 import { NotesForm } from "./NotesForm";
 import { getNote } from "../../services/note/__mock_data__/notes.mock";
+import { Alert } from "react-native";
 
 const mockOnSubmit = jest.fn();
 
@@ -71,49 +72,110 @@ describe(`<${NotesForm.name}>`, () => {
   });
 
   describe("submit", () => {
-    test("should call create note when isEditing is false or undefined", async () => {
-      const createNoteSpy = jest
-        .spyOn(notesService, "createNote")
-        .mockImplementation(() => Promise.resolve({ name: "1" }));
+    describe("api call is successful", () => {
+      test("Not isEditing > call create note service", async () => {
+        const alertSpy = spyOnAlert();
 
-      setup();
+        const createNoteSpy = createNoteSpySuccess();
+        setup();
 
-      getAndUpdateInput();
+        getAndUpdateInput();
 
-      const submitButton = screen.getByTestId("submit-button");
-      fireEvent.press(submitButton);
+        const submitButton = screen.getByTestId("submit-button");
+        fireEvent.press(submitButton);
 
-      expect(createNoteSpy).toHaveBeenCalled();
+        expect(createNoteSpy).toHaveBeenCalled();
 
-      await waitFor(() => {
-        expect(mockOnSubmit).toHaveBeenCalled();
+        await waitFor(() => {
+          expect(mockOnSubmit).toHaveBeenCalled();
+        });
+
+        expect(alertSpy).toHaveBeenCalled();
+
+        const [title, message] = alertSpy.mock.calls[0];
+
+        expect(title).toBe("Success");
+        expect(message).toBe("Note created successfully");
+      });
+
+      test("isEditing > call update note service", async () => {
+        const alertSpy = spyOnAlert();
+
+        const updateNoteSpy = updateNoteSpySuccess();
+
+        setup({ isEditing: true });
+
+        getAndUpdateInput();
+
+        const submitButton = screen.getByTestId("submit-button");
+        fireEvent.press(submitButton);
+
+        expect(updateNoteSpy).toHaveBeenCalled();
+
+        await waitFor(() => {
+          expect(mockOnSubmit).toHaveBeenCalled();
+        });
+
+        expect(alertSpy).toHaveBeenCalled();
+
+        const [title, message] = alertSpy.mock.calls[0];
+
+        expect(title).toBe("Success");
+        expect(message).toBe("Note updated successfully");
       });
     });
 
-    test("should call update note when isEditing is true", async () => {
-      const updateNoteSpy = jest
-        .spyOn(notesService, "updateNoteById")
-        .mockImplementation(() =>
-          Promise.resolve({
-            name: "1",
-            title: "title",
-            description: "description",
-            note: "note",
-            date: new Date(),
-          })
-        );
+    describe("api call is unsuccessful", () => {
+      test("Not isEditing > call create note service", async () => {
+        const alertSpy = spyOnAlert();
 
-      setup({ isEditing: true });
+        const createNoteSpy = createNoteSpyFailure();
 
-      getAndUpdateInput();
+        setup();
 
-      const submitButton = screen.getByTestId("submit-button");
-      fireEvent.press(submitButton);
+        getAndUpdateInput();
 
-      expect(updateNoteSpy).toHaveBeenCalled();
+        const submitButton = screen.getByTestId("submit-button");
+        fireEvent.press(submitButton);
 
-      await waitFor(() => {
-        expect(mockOnSubmit).toHaveBeenCalled();
+        expect(createNoteSpy).toHaveBeenCalled();
+
+        await waitFor(() => {
+          expect(mockOnSubmit).not.toHaveBeenCalled();
+        });
+
+        expect(alertSpy).toHaveBeenCalled();
+
+        const [title, message] = alertSpy.mock.calls[0];
+
+        expect(title).toBe("Error");
+        expect(message).toBe("Something went wrong");
+      });
+
+      test("isEditing > call update note service", async () => {
+        const alertSpy = spyOnAlert();
+
+        const updateNoteSpy = updateNoteSpyFailure();
+
+        setup({ isEditing: true });
+
+        getAndUpdateInput();
+
+        const submitButton = screen.getByTestId("submit-button");
+        fireEvent.press(submitButton);
+
+        expect(updateNoteSpy).toHaveBeenCalled();
+
+        await waitFor(() => {
+          expect(mockOnSubmit).not.toHaveBeenCalled();
+        });
+
+        expect(alertSpy).toHaveBeenCalled();
+
+        const [title, message] = alertSpy.mock.calls[0];
+
+        expect(title).toBe("Error");
+        expect(message).toBe("Something went wrong");
       });
     });
   });
@@ -142,4 +204,34 @@ const getAndUpdateInput = () => {
   fireEvent.changeText(titleInput, "title");
   fireEvent.changeText(descriptionInput, "description");
   fireEvent.changeText(noteInput, "note");
+};
+
+const spyOnAlert = () => {
+  const spy = jest.spyOn(Alert, "alert");
+  return spy;
+};
+
+const createNoteSpySuccess = () => {
+  return jest
+    .spyOn(notesService, "createNote")
+    .mockImplementation(() => Promise.resolve({ name: "1" }));
+};
+
+const createNoteSpyFailure = () => {
+  return jest
+    .spyOn(notesService, "createNote")
+    .mockImplementation(() => Promise.reject({}));
+};
+
+const updateNoteSpySuccess = () => {
+  const note = getNote();
+  return jest
+    .spyOn(notesService, "updateNoteById")
+    .mockImplementation(() => Promise.resolve({ ...note }));
+};
+
+const updateNoteSpyFailure = () => {
+  return jest
+    .spyOn(notesService, "updateNoteById")
+    .mockImplementation(() => Promise.reject({}));
 };

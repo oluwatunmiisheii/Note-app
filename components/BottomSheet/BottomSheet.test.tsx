@@ -39,11 +39,4 @@ describe(`<${BottomSheet.name}>`, () => {
     setup({ isOpen: false });
     expect(screen.queryByText("Test")).not.toBeOnTheScreen();
   });
-
-  test.skip("should call setIsOpen when you click above the bottom sheet", async () => {
-    setup();
-    // get another place in the dom and click on it
-    // const
-    // expect(setIsOpen).toHaveBeenCalled();
-  });
 });
