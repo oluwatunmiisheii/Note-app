@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
-import colors from "../../../utils/constants/colors";
-import { BottomSheet } from "../../BottomSheet/BottomSheet";
-import { Button } from "../../Button/Button";
+import colors from "../../../../utils/constants/colors";
+import { BottomSheet } from "../../../BottomSheet/BottomSheet";
+import { Button } from "../../../Button/Button";
 
 interface BottomActionProps {
   onDelete?: () => void;

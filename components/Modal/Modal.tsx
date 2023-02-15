@@ -1,6 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
 import {
-  ModalProps,
   View,
   StyleSheet,
   Text,
@@ -12,13 +11,19 @@ import {
 } from "react-native";
 import { Button } from "../Button/Button";
 
-export const CustomModal = ({
-  children,
-  visible,
-  onClose,
-  title,
-}: ModalProps & { onClose: () => void; title: string }) => {
-  return visible ? (
+interface ModalProps {
+  visible: boolean;
+  children: React.ReactNode;
+  onClose: () => void;
+  title: string;
+}
+
+export const Modal = (props: ModalProps) => {
+  const { children, visible, onClose, title } = props;
+
+  if (!visible) return null;
+
+  return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={{ ...StyleSheet.absoluteFillObject }}>
         <KeyboardAvoidingView
@@ -31,7 +36,12 @@ export const CustomModal = ({
                 <View style={styles.header}>
                   <Text style={styles.title}>{title}</Text>
                   <Button onPress={onClose} variant="plain">
-                    <Ionicons name="close" size={28} color="black" />
+                    <Ionicons
+                      name="close"
+                      size={28}
+                      color="black"
+                      accessibilityLabel="close"
+                    />
                   </Button>
                 </View>
                 {children}
@@ -41,7 +51,7 @@ export const CustomModal = ({
         </KeyboardAvoidingView>
       </View>
     </TouchableWithoutFeedback>
-  ) : null;
+  );
 };
 
 const styles = StyleSheet.create({

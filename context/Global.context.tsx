@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useMemo } from "react";
-import { OverlayLoader } from "../components/Loader/OverlayLoader";
+import { OverlayLoader } from "../components/Loader/OverLayLoader/OverlayLoader";
 
 interface GlobalContextProps {
   loading: boolean;

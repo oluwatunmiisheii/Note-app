@@ -1,5 +1,5 @@
-import { Note, CreateNoteDto, NoteResponse } from "../models/note.model";
-import http from "../plugins/http.client";
+import { Note, CreateNoteDto, NoteResponse } from "../../models/note.model";
+import http from "../../plugins/http.client";
 
 class NotesService {
   public async fetchNotes(): Promise<Note[]> {

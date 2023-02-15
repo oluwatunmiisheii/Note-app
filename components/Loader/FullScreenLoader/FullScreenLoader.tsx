@@ -1,5 +1,5 @@
 import { View, StyleSheet, ActivityIndicator } from "react-native";
-import colors from "../../utils/constants/colors";
+import colors from "../../../utils/constants/colors";
 
 export const FullScreenLoader = () => (
   <View style={styles.container}>

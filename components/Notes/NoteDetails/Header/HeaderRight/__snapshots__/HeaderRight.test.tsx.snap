@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderRight> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    accessibilityLabel="edit note"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginRight": 20,
+      }
+    }
+  >
+    <AntIcon
+      color="white"
+      name="edit"
+      size={18}
+    />
+  </View>
+  <View
+    accessibilityLabel="delete note"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+  >
+    <FeatherIcon
+      color="white"
+      name="trash-2"
+      size={18}
+    />
+  </View>
+</View>
+`;

@@ -25,6 +25,7 @@ export const Input = (props: InputProps) => {
       <View style={styles.container}>
         <TextInput
           style={[inputStyles, props.extraStyles]}
+          accessibilityLabel="input"
           placeholderTextColor="#BDBDBD"
           {...props}
         />

@@ -5,7 +5,10 @@ import { TouchableOpacity } from "react-native";
 export const HeaderLeft = () => {
   const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
+    <TouchableOpacity
+      onPress={() => navigation.goBack()}
+      accessibilityLabel="go to previous page"
+    >
       <AntDesign
         name="arrowleft"
         color="white"

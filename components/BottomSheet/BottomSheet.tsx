@@ -20,7 +20,9 @@ export const BottomSheet = ({
   setIsOpen,
   children,
 }: BottomSheetProps) => {
-  return isOpen ? (
+  if (!isOpen) return null;
+
+  return (
     <>
       <TouchableWithoutFeedback onPress={() => setIsOpen(false)}>
         <View
@@ -39,7 +41,7 @@ export const BottomSheet = ({
         </View>
       </View>
     </>
-  ) : null;
+  );
 };
 
 const styles = StyleSheet.create({

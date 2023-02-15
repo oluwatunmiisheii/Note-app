@@ -1,9 +1,13 @@
 import { Alert } from "react-native";
 
-const defaultText = "Are you sure you want to delete this note?";
+export const defaultConfirmDeleteText =
+  "Are you sure you want to delete this note?";
 
 export default function useConfirmDelete() {
-  const confirmDelete = (onConfirm: () => void, text = defaultText) => {
+  const confirmDelete = (
+    onConfirm: () => void,
+    text = defaultConfirmDeleteText
+  ) => {
     Alert.alert(
       "Delete",
       text,
@@ -12,7 +16,7 @@ export default function useConfirmDelete() {
           text: "Cancel",
           style: "cancel",
         },
-        { text: "OK", onPress: onConfirm },
+        { text: "Delete", onPress: onConfirm },
       ],
       { cancelable: false }
     );

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`function InputError(_ref) {
+  var error = _ref.error;
+  return (0, _jsxRuntime.jsx)(_reactNative.View, {
+    children: (0, _jsxRuntime.jsx)(_reactNative.Text, {
+      style: styles.error,
+      children: error
+    })
+  });
+}.name renders correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "color": "#DC3545",
+        "fontSize": 14,
+        "fontWeight": "700",
+        "marginBottom": 5,
+        "marginTop": 2,
+      }
+    }
+  >
+    Error
+  </Text>
+</View>
+`;

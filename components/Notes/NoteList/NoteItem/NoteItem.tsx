@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Note } from "../../../models/note.model";
-import { getFormattedDate } from "../../../utils/date";
+import { Note } from "../../../../models/note.model";
+import { getFormattedDate } from "../../../../utils/date";
 import {
   Gesture,
   GestureDetector,

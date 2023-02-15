@@ -1,7 +1,7 @@
 import { StyleSheet, Pressable, StyleProp, ViewStyle } from "react-native";
 import colors from "../../utils/constants/colors";
 
-enum Variant {
+export enum Variant {
   primary = "primary",
   secondary = "secondary",
   plain = "plain",

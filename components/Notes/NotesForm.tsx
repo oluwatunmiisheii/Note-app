@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Text } from "react-native";
 import { useCreateOrUpdate } from "../../hooks/useCreateOrUpdate";
 import { CreateNoteDto, Note } from "../../models/note.model";
-import notesService from "../../services/notes.service";
+import notesService from "../../services/note/notes.service";
 import { Button } from "../Button/Button";
 import { Input } from "../Form/Input/Input";
 
@@ -115,6 +115,7 @@ export const NotesForm = ({
         onChangeText={(text) => handleInputChange(text, "title")}
         value={inputs.title.value}
         maxLength={50}
+        testID="title-input"
         error={!inputs.title.isValid ? "Title is required" : undefined}
       />
       <Input
@@ -123,6 +124,7 @@ export const NotesForm = ({
         value={inputs.description.value}
         multiline
         maxLength={200}
+        testID="description-input"
         extraStyles={{ height: 100 }}
         error={
           !inputs.description.isValid ? "Description is required" : undefined
@@ -132,6 +134,7 @@ export const NotesForm = ({
         label="Note"
         onChangeText={(text) => handleInputChange(text, "note")}
         value={inputs.note.value}
+        testID="note-input"
         extraStyles={{ height: "auto", minHeight: 250 }}
         error={!inputs.note.isValid ? "Note is required" : undefined}
         multiline
@@ -142,6 +145,7 @@ export const NotesForm = ({
         customStyles={{
           marginTop: 30,
         }}
+        testID="submit-button"
       >
         <Text style={{ color: "white" }}>{isEditing ? "Update" : "Save"}</Text>
       </Button>

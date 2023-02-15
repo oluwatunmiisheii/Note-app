@@ -1,5 +1,5 @@
 import { Note } from "../../models/note.model";
-import { CustomModal } from "../Modal/Modal";
+import { Modal } from "../Modal/Modal";
 import { NotesForm } from "./NotesForm";
 
 type NoteFormModalProps = Parameters<typeof NotesForm>[0] & {
@@ -15,7 +15,7 @@ export const NoteFormModal = (props: NoteFormModalProps) => {
 
   return (
     <>
-      <CustomModal visible={visible} onClose={closeModal} title={title}>
+      <Modal visible={visible} onClose={closeModal} title={title}>
         <NotesForm
           isEditing={isEditing}
           defaultValues={defaultValues}
@@ -24,7 +24,7 @@ export const NoteFormModal = (props: NoteFormModalProps) => {
             closeModal();
           }}
         />
-      </CustomModal>
+      </Modal>
     </>
   );
 };
