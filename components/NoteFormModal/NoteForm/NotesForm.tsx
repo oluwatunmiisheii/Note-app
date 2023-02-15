@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { Note } from "@/models/note.model";
 import { Button } from "@/components/Common/Button/Button";
 import { Input } from "@/components/Common/Form/Input/Input";
@@ -138,13 +138,19 @@ export const NotesForm = (props: NotesFormProps) => {
 
       <Button
         onPress={handleSubmit}
-        customStyles={{
-          marginTop: 30,
-        }}
+        customStyles={{ marginTop: 30 }}
         testID="submit-button"
       >
-        <Text style={{ color: "white" }}>{isEditing ? "Update" : "Save"}</Text>
+        <Text style={styles.submitButton}>{isEditing ? "Update" : "Save"}</Text>
       </Button>
     </>
   );
 };
+
+const styles = StyleSheet.create({
+  submitButton: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 18,
+  },
+});
