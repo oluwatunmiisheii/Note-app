@@ -1,5 +1,5 @@
 import { Note } from "../../models/note.model";
-import { Modal } from "../common/Modal/Modal";
+import { Modal } from "../Shared/Modal/Modal";
 import { NotesForm } from "./NotesForm";
 
 type NoteFormModalProps = Parameters<typeof NotesForm>[0] & {

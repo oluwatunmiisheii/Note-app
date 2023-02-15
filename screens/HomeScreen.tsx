@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { View, StyleSheet, FlatList } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { Button } from "../components/common/Button/Button";
+import { Button } from "../components/Shared/Button/Button";
 import notesService from "../services/note/notes.service";
 import useFetch from "../hooks/useFetch";
-import { FullScreenLoader } from "../components/common/Loader/FullScreenLoader/FullScreenLoader";
+import { FullScreenLoader } from "../components/Shared/Loader/FullScreenLoader/FullScreenLoader";
 import { BottomAction } from "../components/Notes/NoteList/ActionSheet/ActionSheet";
 import { NoteFormModal } from "../components/Notes/NoteFormModal";
-import { EmptyState } from "../components/common/EmptyState/EmptyState";
+import { EmptyState } from "../components/Shared/EmptyState/EmptyState";
 import { NoteItem } from "../components/Notes/NoteList/NoteItem/NoteItem";
 import { Note } from "../models/note.model";
 import { useCreateOrUpdate } from "../hooks/useCreateOrUpdate";

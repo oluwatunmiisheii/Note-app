@@ -3,7 +3,7 @@ import { RouteProp, useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../types";
 import useFetch from "../hooks/useFetch";
 import notesService from "../services/note/notes.service";
-import { FullScreenLoader } from "../components/common/Loader/FullScreenLoader/FullScreenLoader";
+import { FullScreenLoader } from "../components/Shared/Loader/FullScreenLoader/FullScreenLoader";
 import { useState } from "react";
 import useCustomHeader from "../hooks/useCustomHeader";
 import { HeaderLeft } from "../components/Notes/NoteDetails/Header/HeaderLeft/HeaderLeft";
@@ -11,7 +11,7 @@ import { HeaderRight } from "../components/Notes/NoteDetails/Header/HeaderRight/
 import { NoteDetails as NoteSummary } from "../components/Notes/NoteDetails/NoteDetails";
 import { NoteFormModal } from "../components/Notes/NoteFormModal";
 import { useCreateOrUpdate } from "../hooks/useCreateOrUpdate";
-import { EmptyState } from "../components/common/EmptyState/EmptyState";
+import { EmptyState } from "../components/Shared/EmptyState/EmptyState";
 
 type ProfileScreenRouteProp = RouteProp<
   RootStackParamList,
