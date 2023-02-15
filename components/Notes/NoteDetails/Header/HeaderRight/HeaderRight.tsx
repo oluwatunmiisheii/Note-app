@@ -17,7 +17,7 @@ export const HeaderRight = ({ onDelete, onEdit }: HeaderRightProps) => {
         onPress={onEdit}
         accessibilityLabel="edit note"
       >
-        <Feather name="edit" color="white" size={20} />
+        <Feather name="edit" color="white" size={19} />
       </Pressable>
       <Pressable
         onPress={() => {
@@ -25,7 +25,7 @@ export const HeaderRight = ({ onDelete, onEdit }: HeaderRightProps) => {
         }}
         accessibilityLabel="delete note"
       >
-        <Feather name="trash-2" color="white" size={20} />
+        <Feather name="trash-2" color="white" size={19} />
       </Pressable>
     </View>
   );

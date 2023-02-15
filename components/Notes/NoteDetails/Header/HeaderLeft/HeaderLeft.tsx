@@ -12,7 +12,7 @@ export const HeaderLeft = () => {
       <AntDesign
         name="arrowleft"
         color="white"
-        size={20}
+        size={22}
         style={{ marginRight: 20 }}
       />
     </TouchableOpacity>

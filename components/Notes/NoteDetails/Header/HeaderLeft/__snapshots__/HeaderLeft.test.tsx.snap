@@ -22,7 +22,7 @@ exports[`<HeaderLeft> renders correctly 1`] = `
   <AntIcon
     color="white"
     name="arrowleft"
-    size={20}
+    size={22}
     style={
       Object {
         "marginRight": 20,
