@@ -1,5 +1,11 @@
-import React, { PropsWithChildren, useMemo } from "react";
-import { OverlayLoader } from "../components/Shared/Loader/OverLayLoader/OverlayLoader";
+import React, {
+  PropsWithChildren,
+  useMemo,
+  FC,
+  createContext,
+  useState,
+} from "react";
+import { OverlayLoader } from "@/components/Common/Loader/OverLayLoader/OverlayLoader";
 
 interface GlobalContextProps {
   loading: boolean;
@@ -11,12 +17,10 @@ const initialState = {
   setLoading: () => {},
 };
 
-const GlobalContext = React.createContext<GlobalContextProps>(initialState);
+const GlobalContext = createContext<GlobalContextProps>(initialState);
 
-const GlobalContextProvider: React.FC<PropsWithChildren<{}>> = ({
-  children,
-}) => {
-  const [loading, setLoading] = React.useState(false);
+const GlobalContextProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
+  const [loading, setLoading] = useState(false);
 
   const values = useMemo(
     () => ({ loading, setLoading }),

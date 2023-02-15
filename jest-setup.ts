@@ -11,6 +11,7 @@ jest.mock("@expo/vector-icons", () => ({
   Ionicons: "IonIcon",
   AntDesign: "AntIcon",
   Feather: "FeatherIcon",
+  FontAwesome: "FontAwesomeIcon",
 }));
 
 // Enable excluding hidden elements from the queries by default

@@ -1,5 +1,5 @@
 import { Alert } from "react-native";
-import { useGlobalContext } from "../context/Global.context";
+import { useGlobalContext } from "context/Global.context";
 
 interface CreateOrUpdateProps<T> {
   fn: (...args: any) => Promise<T>;

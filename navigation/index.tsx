@@ -7,11 +7,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 
-import HomeScreen from "../screens/HomeScreen";
-import NoteDetails from "../screens/NoteDetailsScreen";
+import HomeScreen from "@/screens/HomeScreen/HomeScreen";
+import NoteDetails from "@/screens/NoteDetailsScreen/NoteDetailsScreen";
 
 import { RootStackParamList } from "../types";
-import colors from "../utils/constants/colors";
+import colors from "utils/constants/colors";
 
 export default function Navigation({
   colorScheme,

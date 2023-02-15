@@ -29,3 +29,8 @@ export const notes = [
 export const findNote = (id: string) => notes.find((note) => note.id === id);
 
 export const getNote = () => notes[0];
+
+export const getRandomNote = () => {
+  const random = Math.floor(Math.random() * notes.length);
+  return notes[random];
+};

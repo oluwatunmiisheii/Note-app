@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`function AddNoteButton(_ref) {
+  var onAddButtonPress = _ref.onAddButtonPress;
+  return (0, _jsxRuntime.jsx)(_reactNative.View, {
+    style: styles.container,
+    children: (0, _jsxRuntime.jsx)(_Button.Button, {
+      onPress: onAddButtonPress,
+      customStyles: styles.addButton,
+      circle: true,
+      testID: "add-note-button",
+      children: (0, _jsxRuntime.jsx)(_vectorIcons.FontAwesome, {
+        name: "plus",
+        size: 30,
+        color: "white"
+      })
+    })
+  });
+} renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "marginBottom": 10,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessibilityRole="button"
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Array [
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30,
+            "height": 60,
+            "justifyContent": "center",
+            "padding": 5,
+            "width": "auto",
+          },
+          Object {
+            "backgroundColor": "#007bff",
+          },
+        ],
+        Object {
+          "height": 60,
+          "width": 60,
+        },
+        Object {
+          "bottom": 0,
+          "position": "absolute",
+          "right": 10,
+        },
+      ]
+    }
+    testID="add-note-button"
+  >
+    <FontAwesomeIcon
+      color="white"
+      name="plus"
+      size={30}
+    />
+  </View>
+</View>
+`;
