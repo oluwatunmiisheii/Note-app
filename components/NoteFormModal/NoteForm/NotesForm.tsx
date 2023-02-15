@@ -141,7 +141,9 @@ export const NotesForm = (props: NotesFormProps) => {
         customStyles={styles.submitButton}
         testID="submit-button"
       >
-        <Text style={styles.submitButton}>{isEditing ? "Update" : "Save"}</Text>
+        <Text style={styles.submitButtonText}>
+          {isEditing ? "Update" : "Save"}
+        </Text>
       </Button>
     </>
   );
